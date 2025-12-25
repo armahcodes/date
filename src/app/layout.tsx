@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { ChakraProvider } from "@/components/providers/ChakraProvider";
+import AuthProvider from "@/components/providers/AuthProvider";
 import CartDrawer from "@/components/cart/CartDrawer";
 
 const montserrat = Montserrat({
@@ -31,10 +32,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={montserrat.variable}>
         <ChakraProvider>
-          <CartProvider>
-            {children}
-            <CartDrawer />
-          </CartProvider>
+          <AuthProvider>
+            <CartProvider>
+              {children}
+              <CartDrawer />
+            </CartProvider>
+          </AuthProvider>
         </ChakraProvider>
       </body>
     </html>
