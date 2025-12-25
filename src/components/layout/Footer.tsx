@@ -71,24 +71,24 @@ export default function Footer() {
               Info
             </Heading>
             <VStack align="flex-start" gap={3}>
-              <Link href="/search">
+              <Link href="/story">
                 <Text color="whiteAlpha.700" fontSize="14px" _hover={{ color: "white" }} transition="color 0.3s">
-                  Search
+                  Our Story
                 </Text>
               </Link>
-              <Link href="/privacy-policy">
+              <Link href="/faq">
                 <Text color="whiteAlpha.700" fontSize="14px" _hover={{ color: "white" }} transition="color 0.3s">
-                  Privacy choices
+                  FAQ
                 </Text>
               </Link>
-              <Link href="/terms-of-service">
+              <Link href="/contact">
+                <Text color="whiteAlpha.700" fontSize="14px" _hover={{ color: "white" }} transition="color 0.3s">
+                  Contact
+                </Text>
+              </Link>
+              <Link href="/terms">
                 <Text color="whiteAlpha.700" fontSize="14px" _hover={{ color: "white" }} transition="color 0.3s">
                   Terms of Service
-                </Text>
-              </Link>
-              <Link href="/refund-policy">
-                <Text color="whiteAlpha.700" fontSize="14px" _hover={{ color: "white" }} transition="color 0.3s">
-                  Refund Policy
                 </Text>
               </Link>
             </VStack>
@@ -110,7 +110,7 @@ export default function Footer() {
             </Heading>
             <HStack gap={4}>
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/thedatedrink"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -127,7 +127,7 @@ export default function Footer() {
                 </Box>
               </a>
               <a
-                href="https://tiktok.com"
+                href="https://tiktok.com/@thedatedrink"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"
@@ -153,16 +153,11 @@ export default function Footer() {
         <Flex
           px={{ base: "20px", md: "30px", lg: "50px" }}
           py={6}
-          direction={{ base: "column", md: "row" }}
-          justify="space-between"
+          justify="center"
           align="center"
-          gap={4}
         >
           <Text color="whiteAlpha.500" fontSize="13px">
             © DATE {new Date().getFullYear()}
-          </Text>
-          <Text color="whiteAlpha.500" fontSize="13px">
-            Powered by Shopify
           </Text>
         </Flex>
       </Box>

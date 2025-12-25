@@ -7,14 +7,14 @@ import { Box, Grid, Heading, Text, Button } from "@chakra-ui/react";
 export default function ImageWithText() {
   return (
     <Box as="section" bg="#f5f5f5">
-      <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} minH={{ base: "500px", md: "650px" }}>
+      <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} minH={{ base: "500px", md: "750px", lg: "800px" }}>
         {/* Image Side */}
-        <Box position="relative" h={{ base: "350px", md: "auto" }} order={1}>
+        <Box position="relative" h={{ base: "450px", md: "auto" }} order={1}>
           <Image
             src="https://jveysj-j1.myshopify.com/cdn/shop/files/Mobile_-_Hero_4.png?v=1762903700&width=1600"
             alt="DATE Superior Cola"
             fill
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover", objectPosition: "center top" }}
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         </Box>
