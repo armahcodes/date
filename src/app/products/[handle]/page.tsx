@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import { Box, Flex, Text, HStack } from "@chakra-ui/react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Link from "next/link";
 import { getProductByHandle, getProducts, formatPrice } from "@/lib/shopify";
 import ProductDetails from "@/components/product/ProductDetails";
 
@@ -86,67 +87,65 @@ export default async function ProductPage({ params }: Props) {
   }
 
   return (
-    <main className="flex w-full flex-col">
+    <Box as="main" display="flex" flexDirection="column" w="full">
       <Header />
 
-      <section className="color-scheme-1 min-h-screen relative overflow-hidden">
-        {/* Subtle ambient background */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div
-            className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full opacity-[0.015]"
-            style={{
-              background: "radial-gradient(circle, #d40055 0%, transparent 60%)",
-              transform: "translate(20%, -20%)",
-            }}
-          />
-          <div
-            className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full opacity-[0.015]"
-            style={{
-              background: "radial-gradient(circle, #3a1f87 0%, transparent 60%)",
-              transform: "translate(-20%, 20%)",
-            }}
-          />
-        </div>
-
-        <div className="wrapper--full-padded py-10 md:py-16 lg:py-20 relative">
+      <Box
+        as="section"
+        minH="100vh"
+        bg="#f5f5f5"
+        position="relative"
+        overflow="hidden"
+      >
+        <Box
+          px={{ base: "20px", md: "30px", lg: "50px" }}
+          py={{ base: 10, md: 14, lg: 20 }}
+          position="relative"
+          maxW="1400px"
+          mx="auto"
+        >
           {/* Breadcrumb */}
-          <nav className="mb-8 md:mb-12">
-            <ol className="flex items-center gap-3 text-[12px]">
-              <li>
-                <Link
-                  href="/"
-                  className="text-black/40 hover:text-[#d40055] transition-colors duration-200"
+          <Box as="nav" mb={{ base: 8, md: 10 }}>
+            <HStack gap={3} fontSize="12px">
+              <Link href="/">
+                <Text
+                  color="blackAlpha.500"
+                  transition="color 0.2s"
+                  _hover={{ color: "#d40055" }}
                 >
                   Home
-                </Link>
-              </li>
-              <li className="text-black/20">
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                </Text>
+              </Link>
+              <Box color="blackAlpha.300">
+                <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
-              </li>
-              <li>
-                <Link
-                  href="/products"
-                  className="text-black/40 hover:text-[#d40055] transition-colors duration-200"
+              </Box>
+              <Link href="/products">
+                <Text
+                  color="blackAlpha.500"
+                  transition="color 0.2s"
+                  _hover={{ color: "#d40055" }}
                 >
-                  Products
-                </Link>
-              </li>
-              <li className="text-black/20">
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  Shop
+                </Text>
+              </Link>
+              <Box color="blackAlpha.300">
+                <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
-              </li>
-              <li className="text-black/70 font-medium">{product.title}</li>
-            </ol>
-          </nav>
+              </Box>
+              <Text color="blackAlpha.700" fontWeight="500">
+                {product.title}
+              </Text>
+            </HStack>
+          </Box>
 
           <ProductDetails product={product} />
-        </div>
-      </section>
+        </Box>
+      </Box>
 
       <Footer />
-    </main>
+    </Box>
   );
 }

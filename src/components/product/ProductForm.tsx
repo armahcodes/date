@@ -2,6 +2,14 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  Box,
+  Flex,
+  Text,
+  HStack,
+  VStack,
+  Button,
+} from "@chakra-ui/react";
 import { useCart } from "@/context/CartContext";
 import { ShopifyProductVariant, formatPrice } from "@/lib/shopify";
 
@@ -11,6 +19,10 @@ interface ProductFormProps {
   onVariantChange: (variant: ShopifyProductVariant) => void;
   sellingPlanId?: string | null;
 }
+
+const MotionBox = motion.create(Box);
+const MotionFlex = motion.create(Flex);
+const MotionButton = motion.create(Button);
 
 export default function ProductForm({ variants, selectedVariant, onVariantChange, sellingPlanId }: ProductFormProps) {
   const [quantity, setQuantity] = useState(1);
@@ -32,7 +44,6 @@ export default function ProductForm({ variants, selectedVariant, onVariantChange
     setError(null);
 
     try {
-      // Pass selling plan ID for pre-order products
       await addItem(selectedVariant.id, quantity, sellingPlanId || undefined);
       setQuantity(1);
       setAddedSuccess(true);
@@ -51,224 +62,298 @@ export default function ProductForm({ variants, selectedVariant, onVariantChange
   const hasDiscount = compareAtPrice && compareAtPrice > price;
   const discountPercentage = hasDiscount ? Math.round(((compareAtPrice - price) / compareAtPrice) * 100) : 0;
 
-  // Extract numeric variant ID from Shopify GID (e.g., "gid://shopify/ProductVariant/123456" -> "123456")
   const variantNumericId = selectedVariant.id.split("/").pop() || selectedVariant.id;
 
   return (
-    <div className="space-y-6">
+    <VStack align="stretch" gap={5}>
       {/* Price Section */}
-      <div className="flex items-baseline gap-4">
-        <motion.span
+      <Flex align="baseline" gap={4}>
+        <MotionBox
           key={selectedVariant.id}
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-black text-[36px] md:text-[42px] font-bold tracking-tight"
-          style={{ fontFamily: "var(--font-montserrat), Montserrat, sans-serif" }}
         >
-          {formatPrice(selectedVariant.price)}
-        </motion.span>
+          <Text
+            fontSize={{ base: "32px", md: "38px" }}
+            fontWeight="700"
+            color="black"
+            letterSpacing="-0.02em"
+            fontFamily="var(--font-montserrat), Montserrat, sans-serif"
+          >
+            {formatPrice(selectedVariant.price)}
+          </Text>
+        </MotionBox>
         {hasDiscount && (
-          <>
-            <span className="text-black/30 text-[20px] line-through">
+          <HStack gap={3}>
+            <Text
+              fontSize="18px"
+              color="blackAlpha.400"
+              textDecoration="line-through"
+            >
               {formatPrice(selectedVariant.compareAtPrice!)}
-            </span>
-            <motion.span
+            </Text>
+            <MotionBox
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="px-3 py-1.5 bg-[#d40055] text-white text-[11px] font-bold uppercase tracking-wider rounded-full"
             >
-              Save {discountPercentage}%
-            </motion.span>
-          </>
+              <Box
+                bg="#d40055"
+                color="white"
+                px={3}
+                py={1}
+                borderRadius="full"
+                fontSize="11px"
+                fontWeight="700"
+                textTransform="uppercase"
+                letterSpacing="0.05em"
+              >
+                Save {discountPercentage}%
+              </Box>
+            </MotionBox>
+          </HStack>
         )}
-      </div>
+      </Flex>
 
       {/* Variant Selector */}
       {hasMultipleVariants && (
-        <div>
-          <label className="block text-black/70 text-[12px] font-bold mb-3 uppercase tracking-[0.15em]">
+        <Box>
+          <Text
+            fontSize="11px"
+            fontWeight="700"
+            color="blackAlpha.600"
+            textTransform="uppercase"
+            letterSpacing="0.15em"
+            mb={3}
+          >
             Select Option
-          </label>
-          <div className="flex flex-wrap gap-3">
+          </Text>
+          <Flex wrap="wrap" gap={3}>
             {variants.map((variant) => (
-              <motion.button
+              <Box
                 key={variant.id}
-                onClick={() => onVariantChange(variant)}
-                disabled={!variant.availableForSale}
-                whileHover={variant.availableForSale ? { scale: 1.02 } : {}}
-                whileTap={variant.availableForSale ? { scale: 0.98 } : {}}
-                className={`relative px-6 py-3 rounded-full text-[13px] font-semibold transition-all duration-300 ${
-                  selectedVariant.id === variant.id
-                    ? "bg-[#3a1f87] text-white shadow-lg shadow-[#3a1f87]/20"
-                    : variant.availableForSale
-                    ? "bg-white text-black border-2 border-black/10 hover:border-[#3a1f87]/30"
-                    : "bg-black/5 text-black/30 border-2 border-black/5 cursor-not-allowed line-through"
-                }`}
+                as="button"
+                onClick={() => variant.availableForSale && onVariantChange(variant)}
+                aria-disabled={!variant.availableForSale}
+                px={6}
+                py={3}
+                borderRadius="full"
+                fontSize="13px"
+                fontWeight="600"
+                cursor={variant.availableForSale ? "pointer" : "not-allowed"}
+                transition="all 0.3s"
+                bg={selectedVariant.id === variant.id ? "#3a1f87" : "white"}
+                color={selectedVariant.id === variant.id ? "white" : variant.availableForSale ? "black" : "blackAlpha.400"}
+                border="2px solid"
+                borderColor={selectedVariant.id === variant.id ? "#3a1f87" : "blackAlpha.100"}
+                textDecoration={!variant.availableForSale ? "line-through" : "none"}
+                opacity={!variant.availableForSale ? 0.5 : 1}
+                _hover={{
+                  borderColor: variant.availableForSale && selectedVariant.id !== variant.id ? "#3a1f87" : undefined,
+                  transform: variant.availableForSale ? "translateY(-1px)" : undefined,
+                }}
               >
                 {variant.title}
-                {selectedVariant.id === variant.id && (
-                  <motion.div
-                    layoutId="activeVariant"
-                    className="absolute inset-0 rounded-full border-2 border-[#3a1f87]"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </motion.button>
+              </Box>
             ))}
-          </div>
-        </div>
+          </Flex>
+        </Box>
       )}
 
-      {/* Quantity and Add to Cart Row */}
-      <div className="flex flex-col sm:flex-row gap-4">
+      {/* Quantity and Add to Cart */}
+      <Flex
+        direction={{ base: "column", sm: "row" }}
+        gap={4}
+      >
         {/* Quantity Selector */}
-        <div
-          className="flex items-center justify-between rounded-full h-[60px] px-2"
-          style={{
-            background: "linear-gradient(145deg, #ffffff 0%, #f5f2ec 100%)",
-            boxShadow: "inset 0 2px 4px rgba(0,0,0,0.03)",
-          }}
+        <Flex
+          align="center"
+          justify="space-between"
+          h="56px"
+          px={2}
+          borderRadius="full"
+          bg="linear-gradient(145deg, #ffffff 0%, #f8f6f3 100%)"
+          border="1px solid"
+          borderColor="blackAlpha.100"
+          flexShrink={0}
+          w={{ base: "full", sm: "140px" }}
         >
-          <motion.button
+          <Box
+            as="button"
             onClick={() => handleQuantityChange(-1)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="w-12 h-12 flex items-center justify-center text-black/60 hover:text-[#d40055] hover:bg-[#d40055]/5 rounded-full transition-all"
+            w={10}
+            h={10}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            borderRadius="full"
+            color="blackAlpha.600"
+            transition="all 0.2s"
+            _hover={{ color: "#d40055", bg: "blackAlpha.50" }}
             aria-label="Decrease quantity"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M20 12H4" />
             </svg>
-          </motion.button>
-          <motion.span
+          </Box>
+          <MotionBox
             key={quantity}
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="w-14 text-center text-black text-[18px] font-bold"
           >
-            {quantity}
-          </motion.span>
-          <motion.button
+            <Text
+              fontSize="17px"
+              fontWeight="700"
+              color="black"
+              w={10}
+              textAlign="center"
+            >
+              {quantity}
+            </Text>
+          </MotionBox>
+          <Box
+            as="button"
             onClick={() => handleQuantityChange(1)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="w-12 h-12 flex items-center justify-center text-black/60 hover:text-[#d40055] hover:bg-[#d40055]/5 rounded-full transition-all"
+            w={10}
+            h={10}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            borderRadius="full"
+            color="blackAlpha.600"
+            transition="all 0.2s"
+            _hover={{ color: "#d40055", bg: "blackAlpha.50" }}
             aria-label="Increase quantity"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
             </svg>
-          </motion.button>
-        </div>
+          </Box>
+        </Flex>
 
         {/* Add to Cart Button */}
-        <motion.button
+        <Box
+          as="button"
           onClick={handleAddToCart}
-          disabled={isAdding || !selectedVariant.availableForSale}
-          whileHover={selectedVariant.availableForSale && !isAdding ? { scale: 1.02 } : {}}
-          whileTap={selectedVariant.availableForSale && !isAdding ? { scale: 0.98 } : {}}
+          aria-disabled={isAdding || !selectedVariant.availableForSale}
+          flex={1}
+          h="56px"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          gap={3}
+          borderRadius="full"
+          fontSize="13px"
+          fontWeight="700"
+          textTransform="uppercase"
+          letterSpacing="0.1em"
+          cursor={selectedVariant.availableForSale && !isAdding ? "pointer" : "not-allowed"}
+          transition="all 0.3s"
+          bg={addedSuccess ? "green.500" : selectedVariant.availableForSale ? "#d40055" : "blackAlpha.300"}
+          color="white"
+          boxShadow={selectedVariant.availableForSale && !addedSuccess ? "0 8px 30px -8px rgba(212, 0, 85, 0.5)" : "none"}
+          _hover={{
+            bg: selectedVariant.availableForSale && !addedSuccess && !isAdding ? "#b30048" : undefined,
+            transform: selectedVariant.availableForSale && !isAdding ? "translateY(-2px)" : undefined,
+            boxShadow: selectedVariant.availableForSale && !addedSuccess ? "0 12px 40px -8px rgba(212, 0, 85, 0.6)" : undefined,
+          }}
+          _disabled={{ opacity: 0.7 }}
           data-native-pre-order-btn=""
           data-starting-variant={variantNumericId}
-          className={`relative flex-1 h-[60px] flex items-center justify-center gap-3 text-white text-[14px] font-bold uppercase tracking-[0.12em] rounded-full overflow-hidden transition-all duration-300 ${
-            selectedVariant.availableForSale
-              ? addedSuccess
-                ? "bg-green-600"
-                : "bg-[#d40055] hover:bg-[#b30048]"
-              : "bg-black/20 cursor-not-allowed"
-          } disabled:opacity-70 disabled:cursor-not-allowed`}
-          style={{
-            boxShadow: selectedVariant.availableForSale && !addedSuccess ? "0 10px 40px -10px rgba(212, 0, 85, 0.5)" : "none",
-          }}
         >
-          {/* Animated gradient overlay */}
-          {selectedVariant.availableForSale && !addedSuccess && !isAdding && (
-            <motion.div
-              className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300"
-              style={{
-                background: "linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%)",
-              }}
-            />
-          )}
-
           <AnimatePresence mode="wait">
             {isAdding ? (
-              <motion.div
+              <MotionFlex
                 key="loading"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                className="flex items-center gap-2"
+                align="center"
+                gap={2}
               >
-                <motion.div
+                <MotionBox
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                 >
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
+                    <circle opacity={0.25} cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path opacity={0.75} fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                   </svg>
-                </motion.div>
-                <span>Adding...</span>
-              </motion.div>
+                </MotionBox>
+                <Text>Adding...</Text>
+              </MotionFlex>
             ) : addedSuccess ? (
-              <motion.div
+              <MotionFlex
                 key="success"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                className="flex items-center gap-2"
+                align="center"
+                gap={2}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                <span>Pre-Order Confirmed!</span>
-              </motion.div>
+                <Text>Added!</Text>
+              </MotionFlex>
             ) : !selectedVariant.availableForSale ? (
-              <motion.span
+              <MotionBox
                 key="soldout"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
-                Sold Out
-              </motion.span>
+                <Text>Sold Out</Text>
+              </MotionBox>
             ) : (
-              <motion.div
+              <MotionFlex
                 key="add"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="flex items-center gap-3"
+                align="center"
+                gap={3}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>Pre-Order</span>
-                <span className="opacity-60">•</span>
-                <span className="font-normal opacity-90">
+                <Text>Pre-Order</Text>
+                <Text opacity={0.7}>•</Text>
+                <Text fontWeight="500">
                   {formatPrice({ amount: (price * quantity).toFixed(2), currencyCode: selectedVariant.price.currencyCode })}
-                </span>
-              </motion.div>
+                </Text>
+              </MotionFlex>
             )}
           </AnimatePresence>
-        </motion.button>
-      </div>
+        </Box>
+      </Flex>
 
       {/* Error Message */}
       <AnimatePresence>
         {error && (
-          <motion.div
+          <MotionBox
             initial={{ opacity: 0, y: -10, height: 0 }}
             animate={{ opacity: 1, y: 0, height: "auto" }}
             exit={{ opacity: 0, y: -10, height: 0 }}
-            className="flex items-center gap-2 px-4 py-3 bg-red-50 border border-red-200 rounded-xl"
           >
-            <svg className="w-4 h-4 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-            </svg>
-            <p className="text-red-600 text-[13px]">{error}</p>
-          </motion.div>
+            <Flex
+              align="center"
+              gap={2}
+              px={4}
+              py={3}
+              bg="red.50"
+              border="1px solid"
+              borderColor="red.200"
+              borderRadius="14px"
+            >
+              <Box color="red.500" flexShrink={0}>
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                </svg>
+              </Box>
+              <Text color="red.600" fontSize="13px">{error}</Text>
+            </Flex>
+          </MotionBox>
         )}
       </AnimatePresence>
-    </div>
+    </VStack>
   );
 }
