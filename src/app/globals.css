@@ -1,26 +1,92 @@
-@import "tailwindcss";
+/* ============================================
+   DATE BRAND - Chakra UI v3 Base Styles
+   ============================================ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Typography - Montserrat */
+  --font-montserrat: "Montserrat", system-ui, sans-serif;
+
+  /* Brand Colors */
+  --color-purple: #3a1f87;
+  --color-purple-dark: #2d1869;
+  --color-pink: #d40055;
+  --color-pink-dark: #b30048;
+  --color-cream: #f5f2ec;
+  --color-light: #f5f5f5;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Spacing */
+  --outer-desktop: 50px;
+  --outer-tablet: 30px;
+  --outer-mobile: 20px;
+  --gutter-desktop: 32px;
+  --gutter-tablet: 24px;
+  --gutter-mobile: 16px;
+  --section-desktop: 75px;
+  --section-mobile: 50px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-montserrat);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #000000;
+  background-color: #f5f5f5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-purple);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-pink);
+}
+
+/* Focus & Selection */
+:focus-visible {
+  outline: 2px solid var(--color-purple);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--color-pink);
+  color: white;
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 30s) linear infinite;
 }
