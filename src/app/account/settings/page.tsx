@@ -1,25 +1,11 @@
-import { Metadata } from "next";
-import { Flex } from "@chakra-ui/react";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import AccountSettings from "@/components/account/AccountSettings";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Account Settings | DATE",
   description: "Manage your DATE account settings and preferences.",
-  openGraph: {
-    title: "Account Settings | DATE",
-    description: "Manage your DATE account settings and preferences.",
-    type: "website",
-  },
 };
 
-export default function SettingsPage() {
-  return (
-    <Flex as="main" w="full" direction="column" overflow="hidden">
-      <Header />
-      <AccountSettings />
-      <Footer />
-    </Flex>
-  );
+// Account features are disabled during pre-order phase
+export default async function SettingsPage() {
+  redirect("/");
 }
