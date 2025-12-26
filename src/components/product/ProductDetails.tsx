@@ -15,8 +15,7 @@ import {
   SimpleGrid,
   Icon,
 } from "@chakra-ui/react";
-import { ShopifyProduct, ShopifyProductVariant, formatPrice, getFirstSellingPlan } from "@/lib/shopify";
-import ProductForm from "./ProductForm";
+import { ShopifyProduct, formatPrice } from "@/lib/shopify";
 
 interface ProductDetailsProps {
   product: ShopifyProduct;
@@ -55,9 +54,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   const variants = product.variants.edges.map((edge) => edge.node);
   const firstVariant = variants[0];
 
-  const [selectedVariant, setSelectedVariant] = useState<ShopifyProductVariant | null>(
-    firstVariant || null
-  );
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const containerRef = useRef(null);
@@ -65,7 +61,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
   const images = product.images.edges.map((edge) => edge.node);
 
-  if (!selectedVariant) {
+  if (!firstVariant) {
     return (
       <Flex justify="center" align="center" py={20}>
         <Text color="blackAlpha.600" fontSize="lg">This product is currently unavailable.</Text>
@@ -282,14 +278,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                 </Box>
               </Flex>
             </Box>
-
-            {/* Product Form */}
-            <ProductForm
-              variants={variants}
-              selectedVariant={selectedVariant}
-              onVariantChange={setSelectedVariant}
-              sellingPlanId={getFirstSellingPlan(product)?.id}
-            />
 
             {/* Benefits Grid */}
             <SimpleGrid columns={{ base: 2, md: 3 }} gap={3} mt={2}>

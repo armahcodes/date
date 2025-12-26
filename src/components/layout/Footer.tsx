@@ -91,6 +91,16 @@ export default function Footer() {
                   Terms of Service
                 </Text>
               </Link>
+              <Link href="/privacy-policy">
+                <Text color="whiteAlpha.700" fontSize="14px" _hover={{ color: "white" }} transition="color 0.3s">
+                  Privacy Policy
+                </Text>
+              </Link>
+              <Link href="/refund-policy">
+                <Text color="whiteAlpha.700" fontSize="14px" _hover={{ color: "white" }} transition="color 0.3s">
+                  Refund Policy
+                </Text>
+              </Link>
             </VStack>
           </Box>
 
