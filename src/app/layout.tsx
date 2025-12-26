@@ -12,14 +12,58 @@ const montserrat = Montserrat({
   weight: ["400", "500", "600", "700"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://thedatedrink.com";
+
 export const metadata: Metadata = {
-  title: "DATE | Ancient Seed. Modern Resilience.",
-  description: "DATE is a high performing restorative beverage crafted from upcycled date seeds. Zero caffeine, zero sugar, with prebiotic fiber for your modern resilience.",
-  keywords: ["date beverage", "functional drink", "zero sugar", "zero caffeine", "prebiotic", "wellness", "upcycled", "date seeds"],
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "DATE | Ancient Seed. Modern Resilience.",
+    template: "%s | DATE",
+  },
+  description:
+    "DATE is a high performing restorative beverage crafted from upcycled date seeds. Zero caffeine, zero sugar, with prebiotic fiber for your modern resilience.",
+  keywords: [
+    "date beverage",
+    "functional drink",
+    "zero sugar",
+    "zero caffeine",
+    "prebiotic",
+    "wellness",
+    "upcycled",
+    "date seeds",
+    "healthy soda",
+    "gut health",
+  ],
+  authors: [{ name: "DATE" }],
+  creator: "DATE",
+  publisher: "DATE",
+  manifest: "/site.webmanifest",
   openGraph: {
-    title: "DATE | Ancient Seed. Modern Resilience.",
-    description: "Experience the restorative power of upcycled date seeds. A functional beverage for your modern resilience.",
     type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "DATE",
+    title: "DATE | Ancient Seed. Modern Resilience.",
+    description:
+      "Experience the restorative power of upcycled date seeds. A functional beverage with zero caffeine, zero sugar, and prebiotic fiber for your modern resilience.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DATE | Ancient Seed. Modern Resilience.",
+    description:
+      "Experience the restorative power of upcycled date seeds. Zero caffeine, zero sugar, with prebiotic fiber.",
+    creator: "@thedatedrink",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
