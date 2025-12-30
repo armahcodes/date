@@ -118,7 +118,7 @@ export default function WhyChooseDate() {
             </Flex>
 
             {/* Mobile Highlights Grid */}
-            <Grid templateColumns="1fr 1fr" gap={5}>
+            <Grid templateColumns="1fr 1fr" gap={{ base: 4, sm: 5 }}>
               {highlights
                 .sort((a, b) => a.mobileOrder - b.mobileOrder)
                 .map((highlight, index) => (
@@ -145,7 +145,7 @@ export default function WhyChooseDate() {
                       color="#f5f2ec"
                       fontFamily="var(--font-montserrat), Montserrat, sans-serif"
                       fontWeight="600"
-                      fontSize="16px"
+                      fontSize={{ base: "14px", sm: "16px" }}
                       lineHeight="1.4"
                     >
                       {highlight.text}

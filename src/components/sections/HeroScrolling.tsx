@@ -40,7 +40,7 @@ export default function HeroScrolling() {
               <Text
                 key={i}
                 color="black"
-                fontSize={{ base: "16px", md: "40px" }}
+                fontSize={{ base: "16px", sm: "24px", md: "40px" }}
                 fontWeight="400"
                 whiteSpace="nowrap"
                 letterSpacing="tight"

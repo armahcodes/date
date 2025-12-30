@@ -445,14 +445,14 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             </Heading>
           </Box>
 
-          <SimpleGrid columns={{ base: 2, md: 4 }} gap={6}>
+          <SimpleGrid columns={{ base: 2, md: 4 }} gap={{ base: 4, md: 6 }}>
             {[
               { label: "Standard", value: "3-7 days" },
               { label: "Free Shipping", value: "Over $50" },
               { label: "Expedited", value: "2-3 days" },
               { label: "Processing", value: "1-2 days" },
             ].map((info, index) => (
-              <Box key={index} textAlign={{ base: "left", md: "center" }}>
+              <Box key={index} textAlign="center">
                 <Text fontSize="11px" color="blackAlpha.500" textTransform="uppercase" letterSpacing="0.05em" mb={1}>
                   {info.label}
                 </Text>

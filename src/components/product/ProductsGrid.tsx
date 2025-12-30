@@ -33,7 +33,7 @@ export default function ProductsGrid({ products }: ProductsGridProps) {
   }
 
   return (
-    <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+    <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 lg:gap-10">
       {products.map((product, index) => {
         const price = product.priceRange.minVariantPrice;
         const comparePrice = product.variants.edges[0]?.node?.compareAtPrice;

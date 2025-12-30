@@ -40,7 +40,7 @@ export default function FeaturedProduct() {
         py={16}
         px={{ base: "20px", md: "30px", lg: "50px" }}
       >
-        <Box maxW="lg">
+        <Box maxW={{ base: "100%", sm: "sm", md: "lg" }} textAlign={{ base: "center", md: "left" }}>
           <Heading
             as="h2"
             color="white"

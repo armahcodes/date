@@ -40,8 +40,8 @@ export default function Newsletter() {
             onChange={(e) => setFirstName(e.target.value)}
             placeholder="First name"
             w="full"
-            px={5}
-            py={3}
+            px={{ base: 4, md: 5 }}
+            py={{ base: 2.5, md: 3 }}
             bg="whiteAlpha.100"
             border="1px solid"
             borderColor="whiteAlpha.300"
@@ -60,8 +60,8 @@ export default function Newsletter() {
             placeholder="Enter your email"
             required
             w="full"
-            px={5}
-            py={3}
+            px={{ base: 4, md: 5 }}
+            py={{ base: 2.5, md: 3 }}
             bg="whiteAlpha.100"
             border="1px solid"
             borderColor="whiteAlpha.300"

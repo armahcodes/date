@@ -10,12 +10,14 @@ export default function CommunityAchieving() {
         <Heading
           as="h2"
           color="white"
-          fontSize={{ base: "28px", md: "42px", lg: "48px" }}
+          fontSize={{ base: "24px", sm: "28px", md: "42px", lg: "48px" }}
           fontWeight="600"
           lineHeight="1.15"
           letterSpacing="-0.01em"
           fontFamily="var(--font-montserrat), Montserrat, sans-serif"
-          px={{ base: "20px", md: "30px" }}
+          px={{ base: "16px", sm: "20px", md: "30px" }}
+          maxW="container.lg"
+          mx="auto"
         >
           What our community is achieving
         </Heading>

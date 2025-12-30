@@ -274,7 +274,7 @@ export default function Timeline() {
 
       {/* Mobile Layout */}
       <Box display={{ base: "block", md: "none" }}>
-        <Box px="20px" py="50px">
+        <Box px={{ base: "16px", sm: "20px" }} py={{ base: "40px", sm: "50px" }}>
           {/* Section Header */}
           <Box textAlign="left" mb={8}>
             <Heading
@@ -300,7 +300,7 @@ export default function Timeline() {
           </Box>
 
           {/* Mobile Timeline Items */}
-          <VStack gap={10}>
+          <VStack gap={{ base: 8, sm: 10 }}>
             {timelineItems.map((item, index) => (
               <motion.div
                 key={index}

@@ -277,7 +277,7 @@ export default function Header() {
             transform={mobileMenuOpen ? "translateX(0)" : "translateX(-100%)"}
             transition="transform 0.3s"
           >
-            <VStack as="nav" px={6} py={8} gap={1} align="stretch">
+            <VStack as="nav" px={{ base: 4, sm: 6 }} py={{ base: 6, sm: 8 }} gap={1} align="stretch">
               {navLinks.map((link) => (
                 <Link key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)}>
                   <Box

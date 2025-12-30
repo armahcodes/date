@@ -60,7 +60,7 @@ export default function CartDrawer() {
         right={0}
         bottom={0}
         w="full"
-        maxW="420px"
+        maxW={{ base: "100%", sm: "420px" }}
         bg="#f5f5f5"
         zIndex={70}
         transition="transform 0.3s"

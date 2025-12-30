@@ -75,7 +75,7 @@ export default function AnnouncementBar() {
                       }}
                     />
                   </Box>
-                  <Text color="#f5f2ec" fontSize="13px" fontWeight="700">
+                  <Text color="#f5f2ec" fontSize={{ base: "11px", md: "13px" }} fontWeight="700">
                     {item.text}
                   </Text>
                 </Flex>

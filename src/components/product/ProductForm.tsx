@@ -127,15 +127,15 @@ export default function ProductForm({ variants, selectedVariant, onVariantChange
           >
             Select Option
           </Text>
-          <Flex wrap="wrap" gap={3}>
+          <Flex wrap="wrap" gap={{ base: 2, md: 3 }}>
             {variants.map((variant) => (
               <Box
                 key={variant.id}
                 as="button"
                 onClick={() => variant.availableForSale && onVariantChange(variant)}
                 aria-disabled={!variant.availableForSale}
-                px={6}
-                py={3}
+                px={{ base: 4, md: 6 }}
+                py={{ base: 2.5, md: 3 }}
                 borderRadius="full"
                 fontSize="13px"
                 fontWeight="600"

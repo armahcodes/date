@@ -63,7 +63,7 @@ export default function ImageWithText() {
 
   return (
     <Box as="section" bg="#f5f5f5">
-      <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} minH={{ base: "auto", md: "750px", lg: "800px" }}>
+      <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} minH={{ base: "auto", md: "750px", lg: "800px" }} gap={{ base: 0, md: 0 }}>
         {/* Image Side */}
         <Box position="relative" h={{ base: "450px", md: "auto" }} order={1}>
           <Image
@@ -80,8 +80,10 @@ export default function ImageWithText() {
           display="flex"
           flexDirection="column"
           justifyContent="center"
-          px={{ base: "20px", md: "32px", lg: "50px" }}
-          py={{ base: 10, md: 16 }}
+          alignItems={{ base: "center", md: "flex-start" }}
+          textAlign={{ base: "center", md: "left" }}
+          px={{ base: "16px", sm: "20px", md: "32px", lg: "50px" }}
+          py={{ base: 8, sm: 10, md: 16 }}
           order={2}
         >
           {/* Subheading */}
@@ -125,7 +127,7 @@ export default function ImageWithText() {
 
           {/* Product Purchase Form */}
           {selectedVariant && (
-            <VStack align="stretch" gap={5} maxW="md">
+            <VStack align={{ base: "center", md: "stretch" }} gap={5} maxW="md" w="full">
               {/* Pre-Order Notice */}
               <Box
                 bg="linear-gradient(135deg, #3a1f87 0%, #2d1869 100%)"
@@ -133,6 +135,7 @@ export default function ImageWithText() {
                 p={4}
                 position="relative"
                 overflow="hidden"
+                w="full"
               >
                 <Box
                   position="absolute"
@@ -196,7 +199,7 @@ export default function ImageWithText() {
               </Box>
 
               {/* Quantity and Add to Cart */}
-              <Flex direction={{ base: "column", sm: "row" }} gap={3}>
+              <Flex direction={{ base: "column", sm: "row" }} gap={3} w="full">
                 {/* Quantity Selector */}
                 <Flex
                   align="center"

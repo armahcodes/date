@@ -82,10 +82,10 @@ export default function Hero() {
               <Button
                 bg="#3a1f87"
                 color="white"
-                px={7}
-                py={3}
+                px={{ base: 6, md: 7 }}
+                py={{ base: 2.5, md: 3 }}
                 h="auto"
-                fontSize="14px"
+                fontSize={{ base: "13px", md: "14px" }}
                 fontWeight="700"
                 textTransform="uppercase"
                 letterSpacing="0.1em"
