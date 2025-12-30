@@ -175,15 +175,25 @@ export default function ImageWithText() {
               </Box>
 
               {/* Price */}
-              <Text
-                fontSize={{ base: "28px", md: "34px" }}
-                fontWeight="700"
-                color="black"
-                letterSpacing="-0.02em"
-                fontFamily="var(--font-montserrat), Montserrat, sans-serif"
-              >
-                {formatPrice(selectedVariant.price)}
-              </Text>
+              <Box>
+                <Text
+                  fontSize={{ base: "28px", md: "34px" }}
+                  fontWeight="700"
+                  color="black"
+                  letterSpacing="-0.02em"
+                  fontFamily="var(--font-montserrat), Montserrat, sans-serif"
+                >
+                  {formatPrice(selectedVariant.price)}
+                </Text>
+                <Text
+                  fontSize="14px"
+                  fontWeight="500"
+                  color="blackAlpha.600"
+                  mt={1}
+                >
+                  6 - Pack
+                </Text>
+              </Box>
 
               {/* Quantity and Add to Cart */}
               <Flex direction={{ base: "column", sm: "row" }} gap={3}>
