@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Box, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, VStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+
+const MotionBox = motion.create(Box);
 
 const sections = [
   {
@@ -173,91 +175,134 @@ contact@thedatedrink.com
 
 export default function TermsContent() {
   return (
-    <Box as="section" bg="#f5f5f5" py={{ base: "60px", md: "100px" }}>
+    <Box as="section" bg="#f5f5f5" py={{ base: "60px", md: "100px" }} minH="70vh">
       <Box px={{ base: "20px", md: "30px", lg: "50px" }} maxW="900px" mx="auto">
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <VStack align="stretch" gap={{ base: 8, md: 12 }}>
-            {/* Header */}
-            <Box textAlign="center" mb={4}>
+            {/* Header - Centered */}
+            <VStack gap={4} textAlign="center" mb={4}>
+              <Flex align="center" justify="center" gap={3}>
+                <Box w={8} h="1px" bg="#d40055" opacity={0.4} />
+                <Text
+                  fontSize="11px"
+                  fontWeight="700"
+                  textTransform="uppercase"
+                  letterSpacing="0.2em"
+                  color="#d40055"
+                >
+                  Legal
+                </Text>
+                <Box w={8} h="1px" bg="#d40055" opacity={0.4} />
+              </Flex>
               <Heading
                 as="h1"
                 color="black"
-                fontSize={{ base: "36px", md: "48px", lg: "56px" }}
-                fontWeight="600"
+                fontSize={{ base: "32px", md: "42px", lg: "48px" }}
+                fontWeight="700"
                 lineHeight="1.1"
                 letterSpacing="-0.02em"
                 fontFamily="var(--font-montserrat), Montserrat, sans-serif"
-                mb={4}
               >
                 Terms of Service
               </Heading>
-              <Text color="blackAlpha.600" fontSize="14px">
+              <Text color="blackAlpha.500" fontSize="13px" fontWeight="500">
                 Last updated: December 2024
               </Text>
-            </Box>
-
-            {/* Content Sections */}
-            <VStack align="stretch" gap={{ base: 8, md: 10 }}>
-              {sections.map((section, index) => (
-                <Box
-                  key={index}
-                  bg="white"
-                  borderRadius="xl"
-                  border="1px solid"
-                  borderColor="blackAlpha.100"
-                  p={{ base: 5, md: 8 }}
-                >
-                  <Heading
-                    as="h2"
-                    color="black"
-                    fontSize={{ base: "18px", md: "20px" }}
-                    fontWeight="600"
-                    lineHeight="1.3"
-                    fontFamily="var(--font-montserrat), Montserrat, sans-serif"
-                    mb={4}
-                  >
-                    {section.title}
-                  </Heading>
-                  <Text
-                    color="blackAlpha.700"
-                    fontSize={{ base: "14px", md: "15px" }}
-                    lineHeight="1.9"
-                    whiteSpace="pre-line"
-                  >
-                    {section.content}
-                  </Text>
-                </Box>
-              ))}
             </VStack>
 
-            {/* Back to top / Contact */}
+            {/* Content Sections */}
             <Box
-              mt={8}
-              p={{ base: 6, md: 8 }}
-              bg="#3a1f87"
-              borderRadius="2xl"
-              textAlign="center"
+              bg="white"
+              borderRadius="24px"
+              p={{ base: 6, md: 10 }}
+              border="1px solid"
+              borderColor="blackAlpha.100"
+              boxShadow="0 4px 40px -12px rgba(0,0,0,0.08)"
             >
-              <VStack gap={4}>
+              <VStack align="stretch" gap={0}>
+                {sections.map((section, index) => (
+                  <Box
+                    key={index}
+                    pb={index === sections.length - 1 ? 0 : { base: 6, md: 8 }}
+                    mb={index === sections.length - 1 ? 0 : { base: 6, md: 8 }}
+                    borderBottom={index === sections.length - 1 ? "none" : "1px solid"}
+                    borderColor="blackAlpha.100"
+                  >
+                    <Heading
+                      as="h2"
+                      color="black"
+                      fontSize={{ base: "16px", md: "18px" }}
+                      fontWeight="700"
+                      lineHeight="1.3"
+                      fontFamily="var(--font-montserrat), Montserrat, sans-serif"
+                      mb={4}
+                    >
+                      {section.title}
+                    </Heading>
+                    <Text
+                      color="blackAlpha.700"
+                      fontSize={{ base: "14px", md: "15px" }}
+                      lineHeight="1.9"
+                      whiteSpace="pre-line"
+                    >
+                      {section.content}
+                    </Text>
+                  </Box>
+                ))}
+              </VStack>
+            </Box>
+
+            {/* Contact CTA */}
+            <Box
+              p={{ base: 5, md: 6 }}
+              bg="linear-gradient(135deg, #3a1f87 0%, #2d1869 100%)"
+              borderRadius="20px"
+              textAlign="center"
+              position="relative"
+              overflow="hidden"
+            >
+              {/* Decorative element */}
+              <Box
+                position="absolute"
+                top="-40px"
+                right="-40px"
+                w="120px"
+                h="120px"
+                borderRadius="full"
+                border="1px solid"
+                borderColor="whiteAlpha.100"
+              />
+              <Box
+                position="absolute"
+                bottom="-30px"
+                left="-30px"
+                w="80px"
+                h="80px"
+                borderRadius="full"
+                border="1px solid"
+                borderColor="whiteAlpha.100"
+              />
+
+              <VStack gap={3} position="relative">
                 <Heading
                   as="h3"
                   color="white"
-                  fontSize={{ base: "20px", md: "24px" }}
-                  fontWeight="600"
+                  fontSize={{ base: "16px", md: "18px" }}
+                  fontWeight="700"
                   fontFamily="var(--font-montserrat), Montserrat, sans-serif"
                 >
-                  Have questions?
+                  Have questions about these terms?
                 </Heading>
                 <Text
-                  color="whiteAlpha.800"
-                  fontSize={{ base: "14px", md: "15px" }}
-                  lineHeight="1.7"
+                  color="whiteAlpha.700"
+                  fontSize={{ base: "13px", md: "14px" }}
+                  lineHeight="1.6"
                 >
-                  Contact us at contact@thedatedrink.com
+                  We&apos;re here to help clarify any questions.
                 </Text>
                 <Link href="/contact" style={{ textDecoration: "none" }}>
                   <Box
@@ -269,16 +314,16 @@ export default function TermsContent() {
                     py={3}
                     bg="white"
                     color="#3a1f87"
-                    fontSize="14px"
+                    fontSize="13px"
                     fontWeight="700"
                     textTransform="uppercase"
                     letterSpacing="0.1em"
                     borderRadius="full"
                     transition="all 0.3s"
-                    _hover={{ bg: "#f5f2ec" }}
+                    _hover={{ bg: "#f5f2ec", transform: "translateY(-2px)" }}
                   >
                     Contact Us
-                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </Box>
@@ -286,7 +331,7 @@ export default function TermsContent() {
               </VStack>
             </Box>
           </VStack>
-        </motion.div>
+        </MotionBox>
       </Box>
     </Box>
   );
