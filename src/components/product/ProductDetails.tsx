@@ -15,7 +15,8 @@ import {
   SimpleGrid,
   Icon,
 } from "@chakra-ui/react";
-import { ShopifyProduct, formatPrice } from "@/lib/shopify";
+import { ShopifyProduct, ShopifyProductVariant, formatPrice, getFirstSellingPlan } from "@/lib/shopify";
+import ProductForm from "./ProductForm";
 
 interface ProductDetailsProps {
   product: ShopifyProduct;
@@ -55,11 +56,13 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   const firstVariant = variants[0];
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [selectedVariant, setSelectedVariant] = useState<ShopifyProductVariant>(firstVariant);
 
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: "-50px" });
 
   const images = product.images.edges.map((edge) => edge.node);
+  const sellingPlanId = getFirstSellingPlan(product)?.id;
 
   if (!firstVariant) {
     return (
@@ -311,6 +314,16 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                 </Flex>
               ))}
             </SimpleGrid>
+
+            {/* Product Form - Add to Cart */}
+            <Box mt={4}>
+              <ProductForm
+                variants={variants}
+                selectedVariant={selectedVariant}
+                onVariantChange={setSelectedVariant}
+                sellingPlanId={sellingPlanId}
+              />
+            </Box>
           </VStack>
         </MotionBox>
       </Grid>
