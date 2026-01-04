@@ -1,17 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Box, Flex, Heading, Text, Input, Button, VStack } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 
 export default function Newsletter() {
-  const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Newsletter signup:", { email, firstName });
-  };
-
   return (
     <Box as="section" bg="#d40055" py={{ base: "50px", md: "75px" }}>
       <Box px={{ base: "20px", md: "30px", lg: "50px" }} maxW="670px" mx="auto" textAlign="center">
@@ -33,67 +24,8 @@ export default function Newsletter() {
           Join our community and stay connected.
         </Text>
 
-        <VStack as="form" onSubmit={handleSubmit} gap={4} maxW="md" mx="auto" w="full">
-          <Input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            placeholder="First name"
-            w="full"
-            px={{ base: 4, md: 5 }}
-            py={{ base: 2.5, md: 3 }}
-            bg="whiteAlpha.100"
-            border="1px solid"
-            borderColor="whiteAlpha.300"
-            borderRadius="full"
-            color="white"
-            fontSize="14px"
-            _placeholder={{ color: "whiteAlpha.600" }}
-            _focus={{ borderColor: "white", outline: "none" }}
-            fontFamily="var(--font-montserrat), Montserrat, sans-serif"
-          />
-
-          <Input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            required
-            w="full"
-            px={{ base: 4, md: 5 }}
-            py={{ base: 2.5, md: 3 }}
-            bg="whiteAlpha.100"
-            border="1px solid"
-            borderColor="whiteAlpha.300"
-            borderRadius="full"
-            color="white"
-            fontSize="14px"
-            _placeholder={{ color: "whiteAlpha.600" }}
-            _focus={{ borderColor: "white", outline: "none" }}
-            fontFamily="var(--font-montserrat), Montserrat, sans-serif"
-          />
-
-          <Button
-            type="submit"
-            w="full"
-            bg="#3a1f87"
-            color="white"
-            px={8}
-            py={3}
-            h="auto"
-            fontSize="14px"
-            fontWeight="700"
-            textTransform="uppercase"
-            letterSpacing="0.1em"
-            borderRadius="full"
-            border="2px solid"
-            borderColor="#3a1f87"
-            _hover={{ bg: "#2d1869", borderColor: "#2d1869" }}
-            transition="all 0.3s"
-          >
-            Join
-          </Button>
-        </VStack>
+        {/* Klaviyo Embed Form */}
+        <Box className="klaviyo-form-TV5i6J" />
       </Box>
     </Box>
   );
