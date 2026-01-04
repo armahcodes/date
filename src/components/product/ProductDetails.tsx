@@ -201,9 +201,9 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <VStack align="stretch" gap={6}>
+          <VStack align={{ base: "center", lg: "stretch" }} gap={6} textAlign={{ base: "center", lg: "left" }}>
             {/* Category Label */}
-            <HStack gap={3}>
+            <HStack gap={3} justify={{ base: "center", lg: "flex-start" }}>
               <Text
                 fontSize="11px"
                 fontWeight="700"
@@ -235,6 +235,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               lineHeight={1.8}
               color="blackAlpha.700"
               maxW="lg"
+              mx={{ base: "auto", lg: 0 }}
             >
               Experience balance—rich, smooth, and full of flavor, with notes that dance on your palate from the first sip to the last. Perfect for any time of day when you&apos;re seeking a little something extra.
             </Text>
@@ -246,6 +247,8 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               p={5}
               position="relative"
               overflow="hidden"
+              w="full"
+              textAlign="left"
             >
               {/* Decorative circles */}
               <Box
@@ -300,7 +303,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             </Box>
 
             {/* Benefits Grid */}
-            <SimpleGrid columns={{ base: 2, md: 3 }} gap={3} mt={2}>
+            <SimpleGrid columns={{ base: 2, md: 3 }} gap={3} mt={2} w="full">
               {keyBenefits.map((benefit, index) => (
                 <Flex
                   key={index}
@@ -333,7 +336,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             </SimpleGrid>
 
             {/* Product Form - Add to Cart */}
-            <Box mt={4}>
+            <Box mt={4} w="full">
               <ProductForm
                 variants={variants}
                 selectedVariant={selectedVariant}

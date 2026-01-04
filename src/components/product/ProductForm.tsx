@@ -65,9 +65,9 @@ export default function ProductForm({ variants, selectedVariant, onVariantChange
   const variantNumericId = selectedVariant.id.split("/").pop() || selectedVariant.id;
 
   return (
-    <VStack align="stretch" gap={5}>
+    <VStack align="stretch" gap={5} w="full">
       {/* Price Section */}
-      <Flex align="baseline" gap={4}>
+      <Flex align="baseline" gap={4} justify={{ base: "center", lg: "flex-start" }} flexWrap="wrap">
         <MotionBox
           key={selectedVariant.id}
           initial={{ opacity: 0, y: 8 }}
@@ -124,10 +124,11 @@ export default function ProductForm({ variants, selectedVariant, onVariantChange
             textTransform="uppercase"
             letterSpacing="0.15em"
             mb={3}
+            textAlign={{ base: "center", lg: "left" }}
           >
             Select Option
           </Text>
-          <Flex wrap="wrap" gap={{ base: 2, md: 3 }}>
+          <Flex wrap="wrap" gap={{ base: 2, md: 3 }} justify={{ base: "center", lg: "flex-start" }}>
             {variants.map((variant) => (
               <Box
                 key={variant.id}
@@ -163,6 +164,8 @@ export default function ProductForm({ variants, selectedVariant, onVariantChange
       <Flex
         direction={{ base: "column", sm: "row" }}
         gap={4}
+        w="full"
+        align="center"
       >
         {/* Quantity Selector */}
         <Flex
