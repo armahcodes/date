@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { ShopifyProduct, ShopifyProductVariant, formatPrice, getFirstSellingPlan } from "@/lib/shopify";
 import ProductForm from "./ProductForm";
+import { trackViewedProduct } from "@/lib/klaviyo";
 
 interface ProductDetailsProps {
   product: ShopifyProduct;
@@ -63,6 +64,22 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
   const images = product.images.edges.map((edge) => edge.node);
   const sellingPlanId = getFirstSellingPlan(product)?.id;
+
+  // Track Viewed Product event for Klaviyo
+  useEffect(() => {
+    trackViewedProduct({
+      ProductName: product.title,
+      ProductID: product.id,
+      Categories: ["Functional Beverage"],
+      ImageURL: product.featuredImage?.url,
+      URL: typeof window !== "undefined" ? window.location.href : `/products/${product.handle}`,
+      Brand: "DATE",
+      Price: parseFloat(firstVariant.price.amount),
+      CompareAtPrice: firstVariant.compareAtPrice
+        ? parseFloat(firstVariant.compareAtPrice.amount)
+        : undefined,
+    });
+  }, [product, firstVariant]);
 
   if (!firstVariant) {
     return (

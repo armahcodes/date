@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Box, Flex, Heading, Text, Button, IconButton, VStack, HStack, Spinner } from "@chakra-ui/react";
 import { useCart, useCartLines } from "@/context/CartContext";
 import { formatPrice } from "@/lib/shopify";
+import { trackStartedCheckout, generateEventId, KlaviyoCartItem } from "@/lib/klaviyo";
 
 export default function CartDrawer() {
   const {
@@ -17,8 +18,37 @@ export default function CartDrawer() {
     updateQuantity,
     removeItem,
     isLoading,
+    cart,
   } = useCart();
   const cartLines = useCartLines();
+
+  // Handle checkout click - track Started Checkout event
+  const handleCheckoutClick = () => {
+    if (!cart || !checkoutUrl) return;
+
+    const klaviyoItems: KlaviyoCartItem[] = cartLines.map((line) => ({
+      ProductID: line.merchandise.id,
+      ProductName: `${line.merchandise.product.title} - ${line.merchandise.title}`,
+      Quantity: line.quantity,
+      ItemPrice: parseFloat(line.merchandise.price.amount),
+      RowTotal: parseFloat(line.merchandise.price.amount) * line.quantity,
+      ProductURL: `/products/${line.merchandise.product.handle}`,
+      ImageURL: line.merchandise.product.featuredImage?.url,
+      ProductCategories: ["Functional Beverage"],
+    }));
+
+    const cartTotal = klaviyoItems.reduce((sum, item) => sum + item.RowTotal, 0);
+    const itemNames = cartLines.map((line) => line.merchandise.product.title);
+
+    trackStartedCheckout({
+      $event_id: generateEventId(cart.id),
+      $value: cartTotal,
+      ItemNames: itemNames,
+      CheckoutURL: checkoutUrl,
+      Categories: ["Functional Beverage"],
+      Items: klaviyoItems,
+    });
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -289,7 +319,11 @@ export default function CartDrawer() {
 
               {/* Checkout Button */}
               {checkoutUrl ? (
-                <a href={checkoutUrl} style={{ width: "100%", textDecoration: "none" }}>
+                <a
+                  href={checkoutUrl}
+                  style={{ width: "100%", textDecoration: "none" }}
+                  onClick={handleCheckoutClick}
+                >
                   <Button
                     w="full"
                     bg="#d40055"

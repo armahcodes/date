@@ -11,6 +11,12 @@ import {
   getCart,
   formatPrice,
 } from "@/lib/shopify";
+import {
+  trackAddedToCart,
+  trackStartedCheckout,
+  generateEventId,
+  KlaviyoCartItem,
+} from "@/lib/klaviyo";
 
 interface CartContextType {
   cart: Cart | null;
@@ -30,6 +36,20 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 const CART_ID_KEY = "shopify_cart_id";
+
+// Helper to format cart lines for Klaviyo
+function formatCartLinesForKlaviyo(cart: Cart): KlaviyoCartItem[] {
+  return cart.lines.edges.map(({ node }) => ({
+    ProductID: node.merchandise.id,
+    ProductName: `${node.merchandise.product.title} - ${node.merchandise.title}`,
+    Quantity: node.quantity,
+    ItemPrice: parseFloat(node.merchandise.price.amount),
+    RowTotal: parseFloat(node.merchandise.price.amount) * node.quantity,
+    ProductURL: `/products/${node.merchandise.product.handle}`,
+    ImageURL: node.merchandise.product.featuredImage?.url,
+    ProductCategories: ["Functional Beverage"],
+  }));
+}
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<Cart | null>(null);
@@ -93,6 +113,29 @@ export function CartProvider({ children }: { children: ReactNode }) {
       localStorage.setItem(CART_ID_KEY, updatedCart.id);
       setCart(updatedCart);
       setIsOpen(true);
+
+      // Track Added to Cart event for Klaviyo
+      const addedLine = updatedCart.lines.edges.find(
+        ({ node }) => node.merchandise.id === variantId
+      )?.node;
+
+      if (addedLine) {
+        const klaviyoItems = formatCartLinesForKlaviyo(updatedCart);
+        const cartTotal = klaviyoItems.reduce((sum, item) => sum + item.RowTotal, 0);
+
+        trackAddedToCart({
+          $value: cartTotal,
+          AddedItemProductName: addedLine.merchandise.product.title,
+          AddedItemProductID: addedLine.merchandise.id,
+          AddedItemCategories: ["Functional Beverage"],
+          AddedItemImageURL: addedLine.merchandise.product.featuredImage?.url,
+          AddedItemURL: `/products/${addedLine.merchandise.product.handle}`,
+          AddedItemPrice: parseFloat(addedLine.merchandise.price.amount),
+          AddedItemQuantity: quantity,
+          CheckoutURL: updatedCart.checkoutUrl,
+          Items: klaviyoItems,
+        });
+      }
     } catch (error) {
       console.error("Error adding to cart:", error);
       throw error;
