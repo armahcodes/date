@@ -163,12 +163,12 @@ We reserve the right, in our sole discretion, to update, change, or replace any 
   },
   {
     title: "SECTION 24 - CONTACT INFORMATION",
-    content: `Questions about the Terms of Service should be sent to us at contact@thedatedrink.com.
+    content: `Questions about the Terms of Service should be sent to us at support@dateseedsoda.com.
 
 Our contact information is posted below:
 
 Glogy Foods Inc
-contact@thedatedrink.com
+support@dateseedsoda.com
 9465 Wilshire Blvd, STE 300, Beverly Hills, CA 90212`,
   },
 ];

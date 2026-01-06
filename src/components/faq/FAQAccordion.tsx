@@ -53,11 +53,6 @@ const faqData: FAQCategory[] = [
         answer:
           "No, DATE is completely Non-GMO. We're committed to using only clean, natural ingredients that you can trust. Every bottle is made with integrity and transparency.",
       },
-      {
-        question: "Is DATE vegan and gluten-free?",
-        answer:
-          "Yes! DATE is both vegan and gluten-free. It's made with plant-based ingredients and contains no animal products or gluten-containing grains.",
-      },
     ],
   },
   {
@@ -76,7 +71,7 @@ const faqData: FAQCategory[] = [
       {
         question: "How much is shipping?",
         answer:
-          "Shipping is a flat rate of $4.99 for all orders within the continental United States. Orders over $50 qualify for free shipping!",
+          "Standard Shipping (3-7 days) is $5.99 for all orders within the continental United States. Orders over $74 qualify for free shipping!",
       },
       {
         question: "Can I change or cancel my subscription?",

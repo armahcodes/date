@@ -18,11 +18,11 @@ export default function Footer() {
             <Link href="/">
               <Box display="inline-block" mb={6}>
                 <Image
-                  src="https://checkout.thedatedrink.com/cdn/shop/files/DATE_LOGO_Horizontal_WHITE.svg?v=1759192572&width=360"
+                  src="https://checkout.thedatedrink.com/cdn/shop/files/DATE_white.svg?v=1749174610&width=200"
                   alt="DATE"
-                  width={140}
-                  height={42}
-                  style={{ height: "40px", width: "auto" }}
+                  width={120}
+                  height={50}
+                  style={{ height: "50px", width: "auto" }}
                 />
               </Box>
             </Link>
@@ -120,7 +120,7 @@ export default function Footer() {
             </Heading>
             <HStack gap={4}>
               <a
-                href="https://instagram.com/thedatedrink"
+                href="https://instagram.com/dateseedsoda"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -137,7 +137,7 @@ export default function Footer() {
                 </Box>
               </a>
               <a
-                href="https://tiktok.com/@thedatedrink"
+                href="https://tiktok.com/@dateseedsoda"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"

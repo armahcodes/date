@@ -88,11 +88,11 @@ export default function Header() {
             <Box position="absolute" left="50%" transform="translateX(-50%)">
               <Link href="/">
                 <Image
-                  src="https://jveysj-j1.myshopify.com/cdn/shop/files/DATE_LOGO_Horizontal_BLACK.svg?v=1759192513&width=170"
+                  src="https://checkout.thedatedrink.com/cdn/shop/files/DATE_black.svg?v=1749174610&width=200"
                   alt="DATE"
-                  width={140}
-                  height={28}
-                  style={{ height: "28px", width: "auto" }}
+                  width={100}
+                  height={36}
+                  style={{ height: "36px", width: "auto" }}
                   priority
                 />
               </Link>
@@ -147,11 +147,11 @@ export default function Header() {
             <Box flexShrink={0}>
               <Link href="/">
                 <Image
-                  src="https://jveysj-j1.myshopify.com/cdn/shop/files/DATE_LOGO_Horizontal_BLACK.svg?v=1759192513&width=170"
+                  src="https://checkout.thedatedrink.com/cdn/shop/files/DATE_black.svg?v=1749174610&width=200"
                   alt="DATE"
-                  width={170}
-                  height={34}
-                  style={{ height: "34px", width: "auto" }}
+                  width={120}
+                  height={44}
+                  style={{ height: "44px", width: "auto" }}
                   priority
                 />
               </Link>
@@ -302,7 +302,7 @@ export default function Header() {
             <Box position="absolute" bottom={0} left={0} right={0} p={6} borderTop="1px solid" borderColor="whiteAlpha.200">
               <HStack gap={4}>
                 <a
-                  href="https://instagram.com"
+                  href="https://instagram.com/dateseedsoda"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -319,7 +319,7 @@ export default function Header() {
                   </Box>
                 </a>
                 <a
-                  href="https://tiktok.com"
+                  href="https://tiktok.com/@dateseedsoda"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="TikTok"

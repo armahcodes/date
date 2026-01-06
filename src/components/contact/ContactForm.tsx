@@ -101,7 +101,7 @@ export default function ContactForm() {
                         Email
                       </Text>
                       <Text color="black" fontSize="15px" fontWeight="600">
-                        hello@thedatedrink.com
+                        hello@dateseedsoda.com
                       </Text>
                     </Box>
                   </Flex>

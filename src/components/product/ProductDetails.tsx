@@ -478,11 +478,10 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             </Heading>
           </Box>
 
-          <SimpleGrid columns={{ base: 2, md: 4 }} gap={{ base: 4, md: 6 }}>
+          <SimpleGrid columns={{ base: 3, md: 3 }} gap={{ base: 4, md: 6 }}>
             {[
               { label: "Standard", value: "3-7 days" },
-              { label: "Free Shipping", value: "Over $50" },
-              { label: "Expedited", value: "2-3 days" },
+              { label: "Free Shipping", value: "Over $74" },
               { label: "Processing", value: "1-2 days" },
             ].map((info, index) => (
               <Box key={index} textAlign="center">
@@ -507,9 +506,9 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           justify={{ base: "flex-start", md: "center" }}
         >
           {[
-            { icon: "truck", text: "Free shipping over $50" },
+            { icon: "truck", text: "Free shipping over $74" },
             { icon: "shield", text: "Secure checkout" },
-            { icon: "refresh", text: "Easy returns" },
+            { icon: "refresh", text: "Satisfaction guaranteed" },
           ].map((item, index) => (
             <HStack key={index} gap={2} color="blackAlpha.500" fontSize="13px">
               {item.icon === "truck" && (

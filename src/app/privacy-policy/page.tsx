@@ -115,7 +115,7 @@ export default function PrivacyPolicyPage() {
 
           <LegalContactBox
             title="Questions about your privacy?"
-            email="privacy@thedatedrink.com"
+            email="support@dateseedsoda.com"
             description="We're here to help with any privacy-related concerns."
           />
         </VStack>
