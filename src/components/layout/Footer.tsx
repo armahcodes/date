@@ -18,9 +18,9 @@ export default function Footer() {
             <Link href="/">
               <Box display="inline-block" mb={6}>
                 <Image
-                  src="https://checkout.thedatedrink.com/cdn/shop/files/DATE_white.svg?v=1749174610&width=200"
+                  src="https://checkout.thedatedrink.com/cdn/shop/files/DATE_LOGO_Horizontal_WHITE.svg?v=1759192572&width=360"
                   alt="DATE"
-                  width={120}
+                  width={170}
                   height={50}
                   style={{ height: "50px", width: "auto" }}
                 />

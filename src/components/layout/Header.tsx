@@ -88,9 +88,9 @@ export default function Header() {
             <Box position="absolute" left="50%" transform="translateX(-50%)">
               <Link href="/">
                 <Image
-                  src="https://checkout.thedatedrink.com/cdn/shop/files/DATE_black.svg?v=1749174610&width=200"
+                  src="https://jveysj-j1.myshopify.com/cdn/shop/files/DATE_LOGO_Horizontal_BLACK.svg?v=1759192513&width=170"
                   alt="DATE"
-                  width={100}
+                  width={160}
                   height={36}
                   style={{ height: "36px", width: "auto" }}
                   priority
@@ -147,9 +147,9 @@ export default function Header() {
             <Box flexShrink={0}>
               <Link href="/">
                 <Image
-                  src="https://checkout.thedatedrink.com/cdn/shop/files/DATE_black.svg?v=1749174610&width=200"
+                  src="https://jveysj-j1.myshopify.com/cdn/shop/files/DATE_LOGO_Horizontal_BLACK.svg?v=1759192513&width=200"
                   alt="DATE"
-                  width={120}
+                  width={190}
                   height={44}
                   style={{ height: "44px", width: "auto" }}
                   priority
