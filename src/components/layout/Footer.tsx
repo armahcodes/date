@@ -16,13 +16,13 @@ export default function Footer() {
           {/* Logo Column */}
           <Box gridColumn={{ base: "span 2", md: "span 1" }}>
             <Link href="/">
-              <Box display="inline-block" mb={6}>
+              <Box display="inline-block" mb={6} w="full">
                 <Image
                   src="https://checkout.dateseedsoda.com/cdn/shop/files/DATE_LOGO_Horizontal_WHITE.svg?v=1759192572&width=360"
                   alt="DATE"
-                  width={170}
-                  height={50}
-                  style={{ height: "50px", width: "auto" }}
+                  width={360}
+                  height={80}
+                  style={{ width: "100%", height: "auto", maxWidth: "360px" }}
                 />
               </Box>
             </Link>
