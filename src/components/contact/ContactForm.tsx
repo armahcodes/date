@@ -135,7 +135,7 @@ export default function ContactForm() {
                         Social
                       </Text>
                       <Text color="black" fontSize="15px" fontWeight="600">
-                        @thedatedrink
+                        @dateseedsoda
                       </Text>
                     </Box>
                   </Flex>

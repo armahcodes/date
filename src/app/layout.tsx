@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     title: "DATE | Ancient Seed. Modern Resilience.",
     description:
       "Experience the restorative power of upcycled date seeds. Zero caffeine, zero sugar, with prebiotic fiber.",
-    creator: "@thedatedrink",
+    creator: "@dateseedsoda",
   },
   robots: {
     index: true,
