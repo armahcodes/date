@@ -18,7 +18,7 @@ export default function Footer() {
             <Link href="/">
               <Box display="inline-block" mb={6}>
                 <Image
-                  src="https://checkout.thedatedrink.com/cdn/shop/files/DATE_LOGO_Horizontal_WHITE.svg?v=1759192572&width=360"
+                  src="https://checkout.dateseedsoda.com/cdn/shop/files/DATE_LOGO_Horizontal_WHITE.svg?v=1759192572&width=360"
                   alt="DATE"
                   width={170}
                   height={50}

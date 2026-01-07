@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "checkout.thedatedrink.com",
+        hostname: "checkout.dateseedsoda.com",
       },
     ],
   },

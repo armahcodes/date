@@ -88,7 +88,7 @@ export default function Header() {
             <Box position="absolute" left="50%" transform="translateX(-50%)">
               <Link href="/">
                 <Image
-                  src="https://jveysj-j1.myshopify.com/cdn/shop/files/DATE_LOGO_Horizontal_BLACK.svg?v=1759192513&width=170"
+                  src="https://checkout.dateseedsoda.com/cdn/shop/files/DATE_LOGO_Horizontal_BLACK.svg?v=1759192513&width=170"
                   alt="DATE"
                   width={160}
                   height={36}
@@ -147,7 +147,7 @@ export default function Header() {
             <Box flexShrink={0}>
               <Link href="/">
                 <Image
-                  src="https://jveysj-j1.myshopify.com/cdn/shop/files/DATE_LOGO_Horizontal_BLACK.svg?v=1759192513&width=200"
+                  src="https://checkout.dateseedsoda.com/cdn/shop/files/DATE_LOGO_Horizontal_BLACK.svg?v=1759192513&width=200"
                   alt="DATE"
                   width={190}
                   height={44}
