@@ -13,7 +13,7 @@ const montserrat = Montserrat({
   weight: ["400", "500", "600", "700"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://thedatedrink.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dateseedsoda.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
