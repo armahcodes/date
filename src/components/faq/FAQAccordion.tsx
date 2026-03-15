@@ -61,7 +61,7 @@ const faqData: FAQCategory[] = [
       {
         question: "Can I make a one-time purchase?",
         answer:
-          "Absolutely! A single 6-pack of DATE Superior Cola costs $24.96. However, if you love it (and we think you will), our subscription option saves you 10% on every order.",
+          "Absolutely! A single 12-pack of DATE Superior Cola costs $47.88. However, if you love it (and we think you will), our subscription option saves you 10% on every order.",
       },
       {
         question: "Where do you ship?",

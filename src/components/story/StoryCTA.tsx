@@ -83,7 +83,7 @@ export default function StoryCTA() {
                 Zero caffeine, zero sugar, zero compromise.
               </Text>
 
-              <Link href="/products/superior-cola-6-pack" style={{ textDecoration: "none" }}>
+              <Link href="/products/superior-cola-12-pack" style={{ textDecoration: "none" }}>
                 <Button
                   bg="#3a1f87"
                   color="white"

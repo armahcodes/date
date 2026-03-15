@@ -20,7 +20,7 @@ export default function Hero() {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const fetchedProduct = await getProductByHandle("superior-cola-6-pack");
+        const fetchedProduct = await getProductByHandle("superior-cola-12-pack");
         if (fetchedProduct) {
           setProduct(fetchedProduct);
           const variants = fetchedProduct.variants.edges.map((edge) => edge.node);

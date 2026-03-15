@@ -6,5 +6,5 @@ export const metadata = {
 };
 
 export default function ProductsPage() {
-  redirect("/products/superior-cola-6-pack");
+  redirect("/products/superior-cola-12-pack");
 }

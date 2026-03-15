@@ -48,9 +48,9 @@ export default function Footer() {
                   All Products
                 </Text>
               </Link>
-              <Link href="/products/superior-cola-6-pack">
+              <Link href="/products/superior-cola-12-pack">
                 <Text color="whiteAlpha.700" fontSize="14px" _hover={{ color: "white" }} transition="color 0.3s">
-                  Superior Cola 6-Pack
+                  Superior Cola 12-Pack
                 </Text>
               </Link>
             </VStack>

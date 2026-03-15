@@ -31,7 +31,7 @@ export default function HeritageCTA() {
             >
               <Image
                 src="https://jveysj-j1.myshopify.com/cdn/shop/files/25.png?v=1762903700&width=800"
-                alt="DATE Superior Cola 6 Pack"
+                alt="DATE Superior Cola 12 Pack"
                 fill
                 style={{ objectFit: "contain" }}
                 sizes="(max-width: 768px) 260px, (max-width: 1024px) 320px, 380px"
@@ -96,10 +96,10 @@ export default function HeritageCTA() {
               >
                 <VStack gap={3}>
                   <Text color="black" fontSize="16px" fontWeight="600">
-                    Superior Cola 6 Pack
+                    Superior Cola 12 Pack
                   </Text>
                   <Text color="#3a1f87" fontSize="24px" fontWeight="700">
-                    $24.96
+                    $47.88
                   </Text>
                   <Text color="blackAlpha.500" fontSize="12px">
                     $5 refundable deposit per pack
@@ -107,7 +107,7 @@ export default function HeritageCTA() {
                 </VStack>
               </Box>
 
-              <Link href="/products/superior-cola-6-pack" style={{ textDecoration: "none" }}>
+              <Link href="/products/superior-cola-12-pack" style={{ textDecoration: "none" }}>
                 <Button
                   bg="#3a1f87"
                   color="white"

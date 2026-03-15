@@ -161,7 +161,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               letterSpacing="0.1em"
               textTransform="uppercase"
             >
-              6 × 12oz Cans
+              12 × 12oz Cans
             </Badge>
           </Box>
 
