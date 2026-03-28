@@ -30,7 +30,7 @@ const mockOrders: Order[] = [
     orderNumber: "#1001",
     date: "Dec 15, 2024",
     status: "Delivered",
-    total: "$35.99",
+    total: "$47.88",
     items: 2,
   },
   {
@@ -38,7 +38,7 @@ const mockOrders: Order[] = [
     orderNumber: "#1002",
     date: "Dec 20, 2024",
     status: "In Transit",
-    total: "$71.98",
+    total: "$95.76",
     items: 4,
   },
 ];
@@ -46,11 +46,11 @@ const mockOrders: Order[] = [
 const mockSubscriptions: Subscription[] = [
   {
     id: "1",
-    productName: "Superior Cola 6-Pack",
+    productName: "Superior Cola 12-Pack",
     frequency: "Every 4 weeks",
     nextDelivery: "Jan 15, 2025",
     status: "active",
-    price: "$32.39/delivery",
+    price: "$43.09/delivery",
   },
 ];
 

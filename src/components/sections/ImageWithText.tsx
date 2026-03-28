@@ -194,7 +194,7 @@ export default function ImageWithText() {
                   color="blackAlpha.600"
                   mt={1}
                 >
-                  6 - Pack
+                  12 - Pack
                 </Text>
               </Box>
 
